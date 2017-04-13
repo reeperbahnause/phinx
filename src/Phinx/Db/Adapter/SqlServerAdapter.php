@@ -416,6 +416,13 @@ class SqlServerAdapter extends PdoAdapter implements AdapterInterface
 
         return $columns;
     }
+    
+    public function migrated(MigrationInterface $migration, $direction, $startTime, $endTime)
+    {
+        $startTime = str_replace(' ', 'T', $startTime);
+        $endTime = str_replace(' ', 'T', $endTime);
+        return parent::migrated($migration, $direction, $startTime, $endTime);
+    }
 
     protected function parseDefault($default)
     {
